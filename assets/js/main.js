@@ -8,58 +8,80 @@ const writer = document.querySelector("#writer")
 const actors = document.querySelector("#actors")
 const rating = document.querySelector("#rating")
 const btn = document.querySelector("#btn")
+const notFound = document.querySelector("#notFound")
 var filmInf = document.querySelector("#filmInf")
 
-btn.addEventListener("click", function () {
-    var v = inp.value
-    if (inp.value != "") {
-        searchMovie(v);
-        inp.value = ""
-        filmInf.style.display = "flex"
-        // if (title.innerHTML = "undefined") {
-        //     alert("We don't have this film's information in database, please write correct film name")
-        // } else {
+var v = inp.value
 
-        // }
+var komekci = true;
+
+
+
+btn.addEventListener("click", function () {
+    filmInf.style.display = "flex"
+
+    if (inp.value === "" || inp.value === " ") {
+        komekci = false;
     }
     else {
-        alert("Please write film name")
+        komekci = true;
     }
+
+    searchMovie(inp.value)
+    inp.value = ""
+
 })
 window.addEventListener("keyup", function (e) {
     if (e.key === "Enter") {
-        var v = inp.value
-        if (inp.value != "") {
-            searchMovie(v);
-            inp.value = ""
-            filmInf.style.display = "flex"
-            // if (title.innerHTML = "undefined") {
-            //     alert("We don't have this film's information in database, please write correct film name")
-            // } else {
+        filmInf.style.display = "flex"
 
-            // }
+        if (inp.value === "" || inp.value === " ") {
+            komekci = false;
         }
         else {
-            alert("Please write film name")
+            komekci = true;
         }
+
+        searchMovie(inp.value)
+        inp.value = ""
+
     }
 })
 
 
 
 function searchMovie(api) {
-    var apiw = fetch(`https://www.omdbapi.com/?apikey=trilogy&t=${api}`)
+    if (komekci) {
+        notFound.style.display = "none"
+        var apiw = fetch(`https://www.omdbapi.com/?apikey=trilogy&t=${api}`)
 
-    apiw.then(function (apiw) {
-        return apiw.json()
-    }).then(function (info) {
-        poster.src = info.Poster
-        title.innerHTML = info.Title
-        plot.innerHTML = `About movie : ${info.Plot}`
-        year.innerHTML = `Year : ${info.Year}`
-        director.innerHTML = `Director : ${info.Director}`
-        writer.innerHTML = `Writer : ${info.Writer}`
-        actors.innerHTML = `Actors : ${info.Actors}`
-        rating.innerHTML = `IMdB: ${info.imdbRating}`
-    })
+        apiw.then(function (apiw) {
+            return apiw.json()
+        }).then(function (info) {
+
+            if (info.Title == undefined) {
+                filmInf.style.display = "none"
+                notFound.style.display = "block"
+            }
+            else {
+                poster.src = info.Poster
+                title.innerHTML = info.Title
+                plot.innerHTML = `About movie : ${info.Plot}`
+                year.innerHTML = `Year : ${info.Year}`
+                director.innerHTML = `Director : ${info.Director}`
+                writer.innerHTML = `Writer : ${info.Writer}`
+                actors.innerHTML = `Actors : ${info.Actors}`
+                rating.innerHTML = `IMdB: ${info.imdbRating}`
+            }
+
+        })
+    }
+    else {
+        filmInf.style.display = "none"
+        alert("Please write movie name")
+    }
+
 }
+
+
+

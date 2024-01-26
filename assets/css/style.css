@@ -67,3 +67,6 @@
 #plot,#director,#writer,#rating,#year,#actors{
     font-size: 20px;
 }
+#notFound{
+    text-align: center;
+}
