@@ -26,6 +26,24 @@ btn.addEventListener("click", function () {
         alert("Please write film name")
     }
 })
+window.addEventListener("keyup", function (e) {
+    if (e.key === "Enter") {
+        var v = inp.value
+        if (inp.value != "") {
+            searchMovie(v);
+            inp.value = ""
+            filmInf.style.display = "flex"
+            // if (title.innerHTML = "undefined") {
+            //     alert("We don't have this film's information in database, please write correct film name")
+            // } else {
+
+            // }
+        }
+        else {
+            alert("Please write film name")
+        }
+    }
+})
 
 
 
