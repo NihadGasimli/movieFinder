@@ -1,0 +1,69 @@
+
+#heading{
+    text-align: center;
+    font-size: 48px;
+    font-style: italic;
+    text-shadow: 2px 2px black;
+    color: yellow;
+}
+
+#search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+#search #inp{
+    width: 40%;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    color: #000;
+    border-radius: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#search #btn{
+    height: 50px;
+    border-radius: 20px;
+    width: 100px;
+    background-color: yellow;
+    border: 1px solid black;
+    transition: 0.2s;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#search #btn:hover{
+    background-color: black;
+    color: yellow;
+    border: 1px solid yellow;
+    transition: 0.2s;
+}
+
+#about{
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#poster{
+    width: 350px;
+    display: flex;
+    padding-top: 7px;
+}
+
+#filmInf{
+    display: none;
+    margin-top: 50px;
+    margin-left: 200px;
+    gap: 40px;
+    background-color: yellow;
+    width: 70%;
+}
+#title{
+    font-size: 30px;
+}
+#plot,#director,#writer,#rating,#year,#actors{
+    font-size: 20px;
+}
